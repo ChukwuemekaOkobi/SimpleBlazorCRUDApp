@@ -1,0 +1,68 @@
+﻿@page "/test"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p style="background-color:@Background; color:@Color; padding:10px "> This is a paragraph </p>
+
+<button class="btn btn-primary" @onclick="ProcessColor"> Change Color </button>
+
+<h5> Trying two way Data binding </h5>
+<p><input class="form-inline form-control"  type="text" @bind-value="Background"/></p>
+
+<br/>
+
+<select @bind="Color" class="form-control-sm">
+    @foreach(var c in Colors)
+            {
+                <option value="@c">@c</option>
+            }
+</select>
+
+<h3>Sleep</h3>
+<br/>
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@code{
+
+    public string Color { get; set; }
+    public string Background { get; set; }
+
+    private List<string> Colors { get; set; }
+    private List<string> Backgrounds { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Colors = new List<string>();
+        Backgrounds = new List<string>();
+
+        Colors.AddRange(new []{ "white","black"});
+        Backgrounds.AddRange(new[] { "black", "blue" , "green", "yellow", "grey", "#8952ff", "#ff463e" });
+
+        ProcessColor(); 
+
+    }
+
+
+    private (int,int) GetColor()
+    {
+        var backgroundIndex = new Random().Next(0,Backgrounds.Count-1);
+
+        var colorIndex = backgroundIndex % 2;
+
+        return (backgroundIndex, colorIndex);
+    }
+
+    public void ProcessColor()
+    {
+        var item = GetColor();
+
+        Color = Colors[item.Item2];
+        Background = Backgrounds[item.Item1];
+    }
+}
