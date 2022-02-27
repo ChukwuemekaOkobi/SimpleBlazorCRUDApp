@@ -34,6 +34,9 @@ namespace EmployeeRest
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+            services.AddCors(c => c.AddDefaultPolicy( 
+                a => a.AllowAnyOrigin()));
+
             services.AddControllers();
 
         }
@@ -48,6 +51,8 @@ namespace EmployeeRest
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseRouting();
 

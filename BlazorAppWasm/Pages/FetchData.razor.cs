@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -12,6 +14,8 @@ namespace BlazorAppWasm.Pages
     {
         private WeatherForecast[] forecasts;
 
+        [Inject]
+        public HttpClient Http { get; set; }
       
         public FetchData()
         {
