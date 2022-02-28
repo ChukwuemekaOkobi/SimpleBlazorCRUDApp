@@ -30,6 +30,11 @@ namespace BlazorAppWasm
                 client.BaseAddress = new Uri("https://localhost:44346/");
             });
 
+            builder.Services.AddHttpClient<IDepartmentService, DepartmentService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44379/");
+            });
+
             await builder.Build().RunAsync();
         }
     }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppWasm", "BlazorAppW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{17B74FA6-C101-4957-8479-A00386A521E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeRest", "EmployeeRest\EmployeeRest.csproj", "{F99A0AF5-A1D3-4F1A-8BDA-B9F310F8A015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeRest", "EmployeeRest\EmployeeRest.csproj", "{F99A0AF5-A1D3-4F1A-8BDA-B9F310F8A015}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA6B7794-E781-44D5-A04E-D3CDB8297172}"
 	ProjectSection(SolutionItems) = preProject

@@ -1,6 +1,8 @@
-﻿using Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EmployeeRest.Data.Repository
 {
@@ -13,15 +15,15 @@ namespace EmployeeRest.Data.Repository
             _context = context;
         }
 
-        public Department GetDepartment(int departmentId)
+        public async Task<Department> GetDepartment(int departmentId)
         {
-            return _context.Departments
-                .FirstOrDefault(d => d.Id == departmentId);
+            return  await  _context.Departments
+                .FirstOrDefaultAsync(d => d.Id == departmentId);
         }
 
-        public IEnumerable<Department> GetDepartments()
+        public async Task<IEnumerable<Department>> GetDepartments()
         {
-            return _context.Departments;
+            return  await _context.Departments.ToListAsync();
         }
     }
 }

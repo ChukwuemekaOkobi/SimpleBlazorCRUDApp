@@ -1,0 +1,51 @@
+﻿@page "/databinding"
+
+<h3>DataBinding</h3>
+
+<h5> One Way </h5>
+<hr />
+<p><b>Name :</b> @Name </p>
+<p><b>Name with salutation:</b> @(Gender == "Male" ? $"Mr. {Name}" : $"Miss. {Name}")</p>
+<div>
+    <b>Name: </b>  <input type="text" value="@Name" />
+</div>
+
+<br />
+<h5>Two Way</h5>
+<hr />
+
+<div>
+    <b>Name: </b>  <input type="text" value="@Name" @onchange="@(e => { Name = e.Value.ToString(); })" />
+</div>
+<br />
+<div>
+    <b>Name: </b>  <input type="text" @bind="Name" @bind:event="oninput" />
+</div>
+<div>
+<b>Colour :</b> <input @bind="Colour" />
+
+<div @bind-style="Colour" @bind-style:event="onchange">
+    <h3>The background colour of this text changes</h3>
+</div>
+    </div>
+
+<div>
+    <textarea cols="30" rows="8" @bind="Text" @bind:event="oninput" ></textarea>
+    <p>Count: @Count</p>
+</div>
+
+<div>
+    @(Count >= 10? "Limit has been reached" : "")
+</div>
+@code {
+    protected string Name { get; set; } = "Tom";
+
+    protected string Gender { get; set; } = "Male";
+
+    protected string Colour { get; set; } = "background-color:white";
+
+    protected string Text { get; set; } = String.Empty;
+
+    protected int Count => Text.Length;
+
+}

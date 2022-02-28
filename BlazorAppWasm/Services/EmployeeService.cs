@@ -15,6 +15,11 @@ namespace BlazorAppWasm.Services
             _httpClient = httpClient;
         }
 
+        public async Task<Employee> GetEmployee(int v)
+        {
+            return await _httpClient.GetFromJsonAsync<Employee>($"api/Employee/{v}");
+        }
+
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await _httpClient.GetFromJsonAsync<Employee[]>("api/Employee");
