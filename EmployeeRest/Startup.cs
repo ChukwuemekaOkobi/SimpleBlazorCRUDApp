@@ -34,8 +34,10 @@ namespace EmployeeRest
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
-            services.AddCors(c => c.AddDefaultPolicy( 
-                a => a.AllowAnyOrigin()));
+            services.AddCors(c => c.AddPolicy("cc", 
+                             a => a.AllowAnyOrigin()
+                                   .AllowAnyMethod()
+                                   .AllowAnyHeader()));
 
             services.AddControllers();
 
@@ -56,7 +58,7 @@ namespace EmployeeRest
 
             app.UseHttpsRedirection();
 
-            app.UseCors();
+            app.UseCors("cc");
 
             app.UseRouting();
 

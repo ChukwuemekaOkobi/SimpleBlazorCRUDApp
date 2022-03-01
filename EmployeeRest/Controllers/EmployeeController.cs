@@ -106,12 +106,12 @@ namespace EmployeeRest.Controllers
                 if (id != employee.Id)
                     return BadRequest("Employee ID mismatch");
 
-                var employeeToUpdate = await _employeeRepository.GetEmployee(id);
+                var employeeUpdate = await _employeeRepository.UpdateEmployee(employee);
 
-                if (employeeToUpdate == null)
+                if (employeeUpdate == null)
                     return NotFound($"Employee with Id = {id} not found");
 
-                return await _employeeRepository.UpdateEmployee(employee);
+                return employeeUpdate;
             }
             catch (Exception)
             {

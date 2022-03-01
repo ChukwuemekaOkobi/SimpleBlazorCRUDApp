@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.CustomValidator;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -13,6 +14,8 @@ namespace Models
         public string LastName { get; set; }
         [Required]
         [EmailAddress]
+        [EmailValidator(AllowedDomain = "sporty.com",
+            ErrorMessage = "Domain must be sporty.com")]
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }

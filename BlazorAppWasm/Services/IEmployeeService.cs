@@ -7,6 +7,9 @@ namespace BlazorAppWasm.Services
     public interface IEmployeeService
     {
       Task<IEnumerable<Employee>> GetEmployees();
-        Task<Employee> GetEmployee(int v);
+      Task<Employee> GetEmployee(int v);
+
+      Task<Employee> UpdateEmployee(int id, Employee employee);
+        Task<Employee> CreateEmployee(Employee newEmployee);
     }
 }
