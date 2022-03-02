@@ -1,10 +1,12 @@
 ﻿
+@using Components;
+
 @page "/editemployee/{id}"
 @page "/editemployee"
 
 
 <EditForm Model="@EditEmployeeModel" OnValidSubmit="SubmitForm">
-    <h3>Edit Employee</h3>
+    <h3>@PageHeaderText</h3>
     @*<DataAnnotationsValidator />*@
     <ObjectGraphDataAnnotationsValidator />
     <ValidationSummary />
@@ -84,4 +86,14 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
+    @if (EditEmployeeModel.Id > 0)
+    {
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">
+            Delete
+        </button>
+    }
+
 </EditForm>
+
+<ConfirmMessage @ref="DeleteConfirmation"
+                ConfirmationChanged="ConfirmDelete_Click" />

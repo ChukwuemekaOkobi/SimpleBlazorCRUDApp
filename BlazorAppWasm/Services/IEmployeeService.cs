@@ -11,5 +11,6 @@ namespace BlazorAppWasm.Services
 
       Task<Employee> UpdateEmployee(int id, Employee employee);
         Task<Employee> CreateEmployee(Employee newEmployee);
+        Task DeleteEmployee(int id);
     }
 }

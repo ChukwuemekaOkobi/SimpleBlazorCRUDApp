@@ -1,6 +1,7 @@
 ﻿
 using BlazorAppWasm.Services;
 using BlazorAppWasm.ViewModels;
+using Components;
 using Microsoft.AspNetCore.Components;
 using Models;
 using System;
@@ -20,6 +21,8 @@ namespace BlazorAppWasm.Pages
         [Inject]
         public NavigationManager NavigationService { get; set; }
 
+        public ConfirmMessage DeleteConfirmation { get; set; }
+        public string PageHeaderText { get; set; }
         public Employee Employee { get; set; } = new Employee();
 
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
@@ -40,6 +43,7 @@ namespace BlazorAppWasm.Pages
             if(employeeId != 0)
             {
                 Employee = await EmployeeService.GetEmployee(employeeId);
+                PageHeaderText = $"Edit {Employee.FirstName}";
             }
             else
             {
@@ -49,6 +53,9 @@ namespace BlazorAppWasm.Pages
                     DateOfBirth = DateTime.Now,
                     PhotoUrl = "images/sam.jpg"
                 };
+
+                PageHeaderText = "Create Employee";
+
             }
 
 
@@ -91,6 +98,22 @@ namespace BlazorAppWasm.Pages
             }
 
 
+        }
+
+        protected void Delete_Click()
+        {
+            DeleteConfirmation.Show();
+        }
+
+        protected async Task ConfirmDelete_Click(bool isConfirmed)
+        {
+
+            if (isConfirmed)
+            {
+                await EmployeeService.DeleteEmployee(Employee.Id);
+
+                NavigationService.NavigateTo("/");
+            }
         }
     }
 }

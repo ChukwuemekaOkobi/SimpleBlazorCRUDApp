@@ -37,12 +37,19 @@ namespace BlazorAppWasm.Services
 
            return await result.Content.ReadFromJsonAsync<Employee>();
         }
-
+        public async Task DeleteEmployee(int id)
+        {
+            await _httpClient.DeleteAsync($"api/Employee/{id}");
+        }
         public async Task<Employee> CreateEmployee(Employee newEmployee)
         {
             var result = await _httpClient.PostAsJsonAsync($"api/Employee", newEmployee);
 
-            if (result.StatusCode != System.Net.HttpStatusCode.OK)
+            if (!result.IsSuccessStatusCode)
+            {
+                return null; 
+            }
+            if (result.StatusCode != System.Net.HttpStatusCode.Created)
             {
                 return null;
             }

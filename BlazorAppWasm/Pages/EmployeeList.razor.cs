@@ -36,6 +36,11 @@ namespace BlazorAppWasm.Pages
             }
         }
 
+        protected async Task EmployeeDeleted(int ais)
+        {
+            await LoadEmployees();
+        }
+
 
         protected override async Task OnInitializedAsync()
         {
