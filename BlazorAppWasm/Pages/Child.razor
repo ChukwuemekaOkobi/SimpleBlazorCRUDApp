@@ -1,0 +1,32 @@
+﻿<h3 style="@ElementStyle; @Border">Child - Age: @EmployeeAge</h3>
+<input id="firstName" @attributes="InputAttributes"/>
+
+
+<GrandChild></GrandChild>
+
+@code {
+
+    [CascadingParameter(Name = "ColorStyle")]
+    public string ElementStyle { get; set; }
+
+    [CascadingParameter(Name ="BorderStyle")]
+    public string Border { get; set; }
+
+
+    [CascadingParameter]
+    public int EmployeeAge { get; set; }
+
+    [Parameter]
+
+    public Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            {"required","required" },
+            {"placeholder","child component placeholder" },
+            {"size", "50" },
+            {"maxlength","5" }
+
+        };
+
+
+}

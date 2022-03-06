@@ -1,0 +1,31 @@
+﻿@page "/pc"
+
+<h3 style="@style">Parent</h3>
+
+<CascadingValue Value="@style" Name="ColorStyle">
+    <CascadingValue Value="@EmployeeAge">
+        <CascadingValue Value="border" Name="BorderStyle">
+            <Child InputAttributes="InputAttributes"></Child>
+        </CascadingValue>
+     
+    </CascadingValue>
+ 
+</CascadingValue>
+
+
+@code {
+
+    public string style { get; set; } = "color:red";
+    public string border { get; set; } = "border:2px solid red";
+    public int EmployeeAge { get; set; } = 45;
+
+    public Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            {"required","required" },
+            {"placeholder","parent component placeholder" },
+            {"size", "50" },
+            {"maxlength","5" }
+
+        };
+}
